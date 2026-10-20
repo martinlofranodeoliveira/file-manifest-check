@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "file-manifest-check"
+version = "0.1.0"
+description = "Read-only content manifests and snapshot comparisons for local artifact directories"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [{name = "file-manifest-check contributors"}]
+dependencies = []
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: System :: Filesystems",
+]
+
+[project.scripts]
+file-manifest-check = "file_manifest_check:main"
+
+[project.urls]
+Repository = "https://github.com/martinlofranodeoliveira/file-manifest-check"
+Issues = "https://github.com/martinlofranodeoliveira/file-manifest-check/issues"
+
+[tool.setuptools]
+py-modules = ["file_manifest_check"]

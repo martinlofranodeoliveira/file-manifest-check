@@ -1,0 +1,43 @@
+name: Tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        python: ['3.10', '3.12', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Prepare this ephemeral runner's test sandbox
+        run: |
+          test "$GITHUB_ACTIONS" = true
+          sudo -n apt-get update
+          sudo -n apt-get install -y bubblewrap
+      - name: Stage a package outside the isolated tests
+        run: |
+          python -m pip install --disable-pip-version-check 'setuptools>=68' wheel
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          import shutil
+          import subprocess
+          import sys
+          root = Path.cwd()
+          stage = Path(os.environ['RUNNER_TEMP']) / 'file-manifest-build-source'
+          stage.mkdir()
+          for name in ['file_manifest_check.py', 'pyproject.toml', 'README.md', 'LICENSE']:
+              shutil.copyfile(root / name, stage / name)
+          installed = Path(os.environ['RUNNER_TEMP']) / 'file-manifest-installed'
+          subprocess.run([sys.executable, '-m', 'pip', 'install', '--disable-pip-version-check',
+                          '--no-deps', '--no-build-isolation', '--target', str(installed), str(stage)], check=True)
+          PY
+      - name: Test read-only source and staged console without home or network
+        run: python -B tests/run_offline.py --installed "$RUNNER_TEMP/file-manifest-installed"
