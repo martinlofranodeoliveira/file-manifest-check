@@ -1,3 +1,55 @@
+<!-- public-docs-pt:v1 -->
+# Manifestos e comparação de arquivos
+
+Inventaria conteúdos de uma pasta e compara snapshots no Linux. Não apaga, corrige, envia arquivos ou substitui um backup.
+
+**Estado:** edição pública de desenvolvimento. Recursos e limites detalhados estão na referência técnica preservada abaixo.
+
+## Começar em português
+
+**Requisitos:** Python 3.10+; Linux.
+
+```sh
+git clone https://github.com/martinlofranodeoliveira/file-manifest-check.git
+cd file-manifest-check
+python -m file_manifest_check --help
+```
+
+Use um ambiente de desenvolvimento separado. Não envie `.env`, chaves, bancos,
+uploads ou dados pessoais ao Git. Nas demonstrações, use somente dados fictícios.
+
+## Documentação e validação
+
+[Contribuições](CONTRIBUTING.md) · [Licença](LICENSE) · [Catálogo do laboratório](https://github.com/martinlofranodeoliveira#projetos-abertos)
+
+Os comandos acima foram conferidos nos manifests/guia público; não significam que todas as integrações, plataformas ou serviços reais foram exercitados nesta revisão documental.
+
+A referência técnica original abaixo preserva APIs, exemplos, limites e histórico
+de funcionalidades. Auxiliares em `community/` são módulos independentes: sua
+existência não comprova integração na interface ou no fluxo principal. Ao avaliar
+uma funcionalidade, consulte também o teste e o código do módulo correspondente.
+
+## Contribuir
+
+Abra uma issue com objetivo, comportamento observado, versão e um exemplo mínimo
+sintético. Para código, inclua testes relevantes, instruções de reprodução e
+atualização da documentação. Não envie segredos ou informações de terceiros em
+issues, exemplos, capturas ou pull requests. Mudanças úteis e completas têm
+preferência sobre alterações feitas apenas para aumentar atividade.
+
+## Licença e autoria
+
+Licença declarada no repositório: **MIT**. Consulte o arquivo de licença e mantenha as atribuições de terceiros.
+
+Nome técnico e URL preservados para manter imports, links e automações existentes.
+Título, descrição e tópicos em português facilitam localizar a finalidade do projeto.
+
+<!-- public-docs-pt:end -->
+
+---
+
+## Referência técnica e documentação original
+
 # file-manifest-check
 
 A small, standard-library Python utility for **Linux** that inventories file
